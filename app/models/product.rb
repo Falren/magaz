@@ -1,3 +1,4 @@
 class Product < ApplicationRecord
-  belongs_to :order
+  has_many :line_items
+  has_many :orders, through: :line_items
 end
