@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
       render 'new'
     end
   end
-  
+
   def edit
     @order = Order.find(params[:id])
   end
