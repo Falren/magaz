@@ -1,7 +1,8 @@
 class CategoriesController < ApplicationController
 
   def show
-    @category = Category.friendly.find(params[id])
+    @category = Category.friendly.find(params[:id])
+    @products = Product.all
   end
 
   def new

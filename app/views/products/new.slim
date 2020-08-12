@@ -1,0 +1,16 @@
+=form_for @product do |form|
+  div
+    =form.hidden_field :category_id,  value: @product.category_id
+  div
+    =form.label :name
+    br
+    =form.text_field :name
+  br
+  div
+    =form.label :price
+    br
+    =form.number_field :price
+  br
+  div
+    =form.submit
+
