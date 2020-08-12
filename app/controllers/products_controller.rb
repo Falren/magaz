@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+    @product = Product.friendly.find(params[:id])
   end
 
   def new
@@ -20,11 +20,11 @@ class ProductsController < ApplicationController
     end
   end
   def edit
-    @product = Product.find(params[:id])
+    @product = Product.friendly.find(params[:id])
   end
 
   def update
-    @product = Product.find(params[:id])
+    @product = Product.friendly.find(params[:id])
     if @product.upadte(product_params)
       redirect_to product_path(@product)
     else
@@ -33,7 +33,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.find(params[:id])
+    @product = Product.friendly.find(params[:id])
     if @product.destroy
       redirect_to products_path
     else

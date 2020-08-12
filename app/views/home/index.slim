@@ -5,5 +5,5 @@ h1 Ultra Magaz
   div = link_to 'Sign in', new_user_session_path
   div = link_to 'Sign up', new_user_registration_path
 - else
-  div = link_to 'Browse', products_path
+  render = categories
   div = link_to 'My profile', user_path(current_user.id)
