@@ -1,7 +1,12 @@
 div
   h1 =@category.name
   =link_to 'Add products', new_product_path
+  br
+  =link_to 'Main page', root_path
+  br
+  =link_to 'Destroy', category_path, method: :delete, data: {confirm: 'Noramalniy? '}
 br
+h1 Products
 - if @category.products.blank?
   div There are no products yet
 - else

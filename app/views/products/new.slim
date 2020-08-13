@@ -1,6 +1,7 @@
 =form_for @product do |form|
+  div Choose category:
   div
-    =form.hidden_field :category_id,  value: @product.category_id
+    =form.select :category_id, Category.all.collect {|c| [c.name, c.id] }, include_blank: false
   div
     =form.label :name
     br
