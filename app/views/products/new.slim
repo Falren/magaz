@@ -1,17 +1,14 @@
-=form_for @product do |form|
-  div Choose category:
+= form_for @product do |form|
   div
-    =form.select :category_id, Category.all.collect {|c| [c.name, c.id] }, include_blank: false
+    = form.hidden_field :category_id, value: params[:category_id]
   div
-    =form.label :name
+    = form.label :name
     br
-    =form.text_field :name
-  br
+    = form.text_field :name
   div
-    =form.label :price
+    = form.label :price
     br
-    =form.number_field :price
-  br
+    = form.number_field :price
   div
-    =form.submit
+    = form.submit
 
