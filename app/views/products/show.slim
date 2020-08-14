@@ -1,0 +1,7 @@
+h2
+  | Category:
+  =< link_to @product.category.name, category_path(@product.category_id)
+
+div = @product.name
+div = [@product.price.to_i, '$'].join
+div = link_to 'Add to shopping cart', orders_path

@@ -1,10 +1,12 @@
 class OrdersController < ApplicationController
   def index
     @orders = Order.all
+    @products = Product.all
   end
 
   def show
     @order = Order.find(params[:id])
+    @products = Product.all
   end
 
   def new

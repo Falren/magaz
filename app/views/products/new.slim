@@ -1,0 +1,16 @@
+h1
+  | Add product to category:
+  =<  @category.name
+= form_for @product do |form|
+  div = form.hidden_field :category_id, value: @category.id
+  div
+    = form.label :name
+    br
+    = form.text_field :name
+  div
+    = form.label :price
+    br
+    = form.number_field :price
+  div
+    = form.submit
+
