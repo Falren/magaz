@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :products
   resources :users
   resources :categories
+  resources :line_items
   root 'home#index'
 end

@@ -1,5 +1,4 @@
 class Product < ApplicationRecord
-  enum status: %i[drafted completed]
 
   extend FriendlyId
   friendly_id :name, use: :slugged
