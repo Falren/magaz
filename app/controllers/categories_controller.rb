@@ -19,12 +19,12 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.new
+    @category = Category.friendly.find(params[:id])
   end
 
   def update
-    @category = Category.new(category_params)
-    if @category.update
+    @category = Category.friendly.find(params[:id])
+    if @category.update(category_params)
       redirect_to root_path
     else
       render 'home/index'
