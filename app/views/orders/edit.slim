@@ -1,0 +1,9 @@
+=@order.user.email
+
+= form_for @order do |form|
+  =form.hidden_field :status, value: :completed
+  =form.hidden_field :user_id
+  br
+  =form.text_area :note
+  br
+  =form.submit 'Create order'

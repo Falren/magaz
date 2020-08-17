@@ -4,10 +4,7 @@ div
   br
   = link_to 'Main page', root_path
   br
-  = link_to 'Destroy',
-    category_path,
-    method: :delete,
-    data: { confirm: 'Noramalniy? ' }
+  = link_to 'Destroy', category_path, method: :delete, data: { confirm: 'Noramalniy? ' }
 br
 h1 Products
 - if @category.products.blank?

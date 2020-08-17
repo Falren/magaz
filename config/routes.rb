@@ -5,6 +5,5 @@ Rails.application.routes.draw do
   resources :users, only: %i[edit show update]
   resources :categories
   resources :line_items
-  resources :addresses
   root 'home#index'
 end

@@ -1,12 +1,11 @@
 class LineItemsController < ApplicationController
   before_action :assign_draft_order, only: :create
-
   def create
     @line_item = LineItem.new(line_item_params)
     if @order.line_items << @line_item
       redirect_to product_path
     else
-      render 'category/show'
+      render 'new'
     end
   end
 

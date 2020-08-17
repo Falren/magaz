@@ -6,6 +6,7 @@ h1 Ultra Magaz
 - else
   div = link_to 'My profile', user_path(current_user.id)
   div = link_to 'Create new category', new_category_path
+  div = @drafted_order ? (link_to 'Shopping card', edit_order_path(@drafted_order)) : 'Shopping list is blank'
 
   ul
     = render @categories
