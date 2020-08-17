@@ -1,5 +1,5 @@
-=@order.user.email
-
+= @order.user.email
+ol = render partial: 'product_line', collection: @line_items, as: :line_item
 = form_for @order do |form|
   =form.hidden_field :status, value: :completed
   =form.hidden_field :user_id

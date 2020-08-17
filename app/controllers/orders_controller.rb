@@ -24,6 +24,7 @@ class OrdersController < ApplicationController
 
   def edit
     @order = Order.find(params[:id])
+    @line_items = @order.line_items
   end
 
   def update

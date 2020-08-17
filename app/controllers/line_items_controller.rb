@@ -9,6 +9,11 @@ class LineItemsController < ApplicationController
       render 'new'
     end
   end
+  def destroy
+    @line_item = LineItem.find(params[:id])
+    @line_item.destroy
+    redirect_to edit_order_path(@line_item.order_id)
+  end
 
   private
 
