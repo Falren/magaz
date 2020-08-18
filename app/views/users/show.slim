@@ -1,5 +1,5 @@
 h1 = @user.email
-div = link_to 'Settings', edit_user_path(@user)
-strong = link_to 'My orders', orders_path
+div = link_to 'Settings', edit_user_path
+div = @drafted_order ? (link_to 'My orders', orders_path(current_user.orders)) : 'Order list is blank'
 
 div = link_to 'Back', root_path

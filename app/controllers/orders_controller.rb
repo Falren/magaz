@@ -25,6 +25,7 @@ class OrdersController < ApplicationController
   def edit
     @order = Order.find(params[:id])
     @line_items = @order.line_items
+    @order.build_address if @order.address.blank?
   end
 
   def update
@@ -48,6 +49,9 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:user_id, :note, :status)
+    params.require(:order).permit(
+      :user_id, :note, :status,
+      address_attributes: %i[id building_address post_index number]
+    )
   end
 end
