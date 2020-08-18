@@ -24,11 +24,12 @@ class OrdersController < ApplicationController
 
   def edit
     @order = Order.find(params[:id])
+    @line_items = @order.line_items
   end
 
   def update
     @order = Order.find(params[:id])
-    if @order.upadte(order_params)
+    if @order.update(order_params)
       redirect_to order_path(@order)
     else
       render 'edit'
@@ -47,6 +48,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:user_id, :note)
+    params.require(:order).permit(:user_id, :note, :status)
   end
 end

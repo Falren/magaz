@@ -1,12 +1,11 @@
 
 h1 Ultra Magaz
-
 - unless current_user
   div = link_to 'Sign in', new_user_session_path
   div = link_to 'Sign up', new_user_registration_path
 - else
   div = link_to 'My profile', user_path(current_user.id)
   div = link_to 'Create new category', new_category_path
+  div = @drafted_order ? (link_to 'Shopping card', edit_order_path(@drafted_order)) : 'Shopping list is blank'
 
-  ul
-    = render @categories
+  ul = render @categories

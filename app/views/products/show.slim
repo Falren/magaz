@@ -4,4 +4,4 @@ h2
 
 div = @product.name
 div = [@product.price.to_i, '$'].join
-div = link_to 'Add to shopping cart', orders_path
+div = button_to 'Add to shopping cart', line_items_path(line_item: { product_id: @product.id })
