@@ -1,10 +1,10 @@
 = @order.user.email
 
-  div
-    - if @order.line_items
-      = render partial: 'product_line', collection: @line_items, as: :line_item
-    - else
-      div 'There are no items yet.'
+div
+- if @order.line_items.present?
+  = render partial: 'product_line', collection: @line_items, as: :line_item
+- else
+  div 'There are no items yet.'
 = form_for @order do |form|
   = form.hidden_field :status, value: :completed
   = form.hidden_field :user_id

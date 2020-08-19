@@ -1,3 +1,1 @@
-li
-  | Order #:
-  =< link_to order.id, edit_order_path(order)
+li = link_to "Order: ##{order.id}", edit_order_path(order)
