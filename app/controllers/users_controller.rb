@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @drafted_order = current_user.drafted_order if current_user
+    @completed_orders = current_user.completed_orders if current_user
   end
 
   def edit

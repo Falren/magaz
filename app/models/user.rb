@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   has_many :orders
   has_one :drafted_order, -> { drafted }, class_name: 'Order'
-
+  has_many :completed_orders, -> { completed }, class_name: 'Order'
   has_one :address, as: :addressable
   accepts_nested_attributes_for :address
 

@@ -2,5 +2,5 @@ class LineItem < ApplicationRecord
   belongs_to :product
   belongs_to :order
 
-  delegate :name, to: :product, prefix: true
+  delegate :name, to: :product, prefix: true, allow_nil: true
 end

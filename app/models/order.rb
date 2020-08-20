@@ -6,4 +6,9 @@ class Order < ApplicationRecord
   has_many :products, through: :line_items
   has_one :address, as: :addressable
   accepts_nested_attributes_for :address
+  delegate :post_index, to: :address, prefix: false, allow_nil: true
+  delegate :number, to: :address, prefix: false, allow_nil: true
+  delegate :building_address, to: :address, prefix: false, allow_nil: true
+  delegate :id, to: :address, prefix: false, allow_nil: true
+
 end

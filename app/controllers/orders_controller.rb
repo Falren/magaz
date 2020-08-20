@@ -1,12 +1,13 @@
 class OrdersController < ApplicationController
   def index
     @orders = Order.all
+    @completed_orders = current_user.completed_orders if current_user
     @products = Product.all
   end
 
   def show
     @order = Order.find(params[:id])
-    @products = Product.all
+    @line_items = @order.line_items
   end
 
   def new
