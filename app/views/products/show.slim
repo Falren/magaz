@@ -1,7 +1,13 @@
 h2
   | Category:
   =< link_to @product.category.name, category_path(@product.category_id)
-
 div = @product.name
 div = [@product.price.to_i, '$'].join
-div = button_to 'Add to shopping cart', line_items_path(line_item: { product_id: @product.id })
+- if @product.in_stock
+  div 'Product is in stock'
+  div = button_to 'Add to shopping cart', line_items_path(line_item: { product_id: @product.id })
+- else
+  div 'Product is out of stock'
+  div = link_to '+ Wishlist', wish_list_path()
+
+

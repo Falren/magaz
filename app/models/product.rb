@@ -3,10 +3,21 @@ class Product < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  validates :name, uniqueness: true
+
+  has_many :wish_list_items
+  has_many :wish_lists, through: :wish_list_items
+
   has_many :line_items
   has_many :orders, through: :line_items
 
   belongs_to :category
 
-  validates :name, uniqueness: true
+  before_update :assign_in_stock, if: :will_save_change_to_quantity?
+
+  private
+
+  def assign_in_stock
+    self.in_stock = quantity.positive?
+  end
 end
