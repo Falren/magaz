@@ -8,6 +8,6 @@ div = [@product.price.to_i, '$'].join
   div = button_to 'Add to shopping cart', line_items_path(line_item: { product_id: @product.id })
 - else
   div 'Product is out of stock'
-  div = link_to '+ Wishlist', wish_list_path()
+  div = button_to '+ Wishlist', wish_lists_path
 
 
