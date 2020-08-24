@@ -9,6 +9,15 @@ class WishListItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @wish_list_item = WishListItem.find(params[:id])
+      if @wish_list_item.destroy
+        redirect_to wish_list_path(@wish_list_item.wish_list_id)
+      else
+        render 'wish_lists/show'
+      end
+  end
+
   private
 
   def wish_list_item_params
