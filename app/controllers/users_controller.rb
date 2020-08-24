@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   def show
     @user = User.find(params[:id])
     @drafted_order = current_user.drafted_order if current_user
@@ -13,6 +14,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+      flash.notice = 'address has been succesfully updated'
       redirect_to edit_user_path(@user)
     end
   end

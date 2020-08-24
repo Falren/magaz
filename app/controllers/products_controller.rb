@@ -1,10 +1,12 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, except: %i[ index show ]
   def index
     @products = Product.all
   end
 
   def show
     @product = Product.friendly.find(params[:id])
+    @wish_lists = WishList.all
   end
 
   def new

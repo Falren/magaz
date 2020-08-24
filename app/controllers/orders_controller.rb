@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
   def index
     @orders = Order.all
     @completed_orders = current_user.completed_orders if current_user
@@ -46,7 +47,6 @@ class OrdersController < ApplicationController
       render 'show'
     end
   end
-
   private
 
   def order_params
