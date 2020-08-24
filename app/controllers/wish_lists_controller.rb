@@ -1,15 +1,39 @@
 class WishListsController < ApplicationController
   def new
-    @wishlist = WishList.new
+    @wish_list = WishList.new
   end
 
   def create
-    @wishlist = WishList.new
-    @product = Product.friendly.find(params(:id)
-    if @wishlist.save(wishlist_params)
-      redirect_to product_path(@product)
+    @wish_list = WishList.new(wish_list_params)
+    if @wishlist.save
+      redirect_to root_path
     else
       render 'products/show'
     end
+  end
+
+  def show
+    @wish_list = WishList.find(params[:id])
+    @wish_list_items = @wish_list.wish_list_items
+  end
+
+  def index
+    @wish_lists = WishList.all
+    @user_wish_lists = current_user.wish_lists
+  end
+
+  def destroy
+    @wish_list = WishList.find(params[:id])
+    if @wish_list.destroy
+      redirect_to wish_lists_path
+    else
+      render 'show'
+    end
+  end
+
+  private
+
+  def wish_list_params
+    params.require(:wish_list).permit(:user_id, :name, :note)
   end
 end

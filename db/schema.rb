@@ -89,17 +89,18 @@ ActiveRecord::Schema.define(version: 2020_08_20_121019) do
   end
 
   create_table "wish_list_items", force: :cascade do |t|
-    t.bigint "wish_lists_id", null: false
-    t.bigint "products_id", null: false
+    t.bigint "wish_list_id", null: false
+    t.bigint "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["products_id"], name: "index_wish_list_items_on_products_id"
-    t.index ["wish_lists_id"], name: "index_wish_list_items_on_wish_lists_id"
+    t.index ["product_id"], name: "index_wish_list_items_on_product_id"
+    t.index ["wish_list_id"], name: "index_wish_list_items_on_wish_list_id"
   end
 
   create_table "wish_lists", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name"
+    t.string "note"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_wish_lists_on_user_id"
@@ -109,7 +110,7 @@ ActiveRecord::Schema.define(version: 2020_08_20_121019) do
   add_foreign_key "line_items", "products"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
-  add_foreign_key "wish_list_items", "products", column: "products_id"
-  add_foreign_key "wish_list_items", "wish_lists", column: "wish_lists_id"
+  add_foreign_key "wish_list_items", "products"
+  add_foreign_key "wish_list_items", "wish_lists"
   add_foreign_key "wish_lists", "users"
 end
