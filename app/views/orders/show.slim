@@ -1,8 +1,9 @@
-div = current_user.email
-div = @order.post_index
-div = @order.number
-div = @order.building_address
+- else
+  div = current_user.email
+  div = @order.post_index
+  div = @order.number
+  div = @order.building_address
 
-div = @order.note
+  div = @order.note
 
-div = link_to 'Go to the profile page', orders_path
+  div = link_to 'Go to the profile page', orders_path

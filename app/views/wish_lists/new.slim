@@ -1,0 +1,7 @@
+= form_for @wish_list do |form|
+  = form.hidden_field :user_id, value: current_user.id
+  div = form.label :name
+  div = form.text_field :name
+  div = form.label :note
+  div = form.text_area :note
+  div = form.submit
