@@ -1,2 +1,4 @@
 div Your wish lists
-ul = render @user_wish_lists
+div = render @wish_lists
+br
+div = link_to 'Back to user profile', user_path(current_user.id)

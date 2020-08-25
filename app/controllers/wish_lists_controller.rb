@@ -18,8 +18,7 @@ class WishListsController < ApplicationController
   end
 
   def index
-    @wish_lists = WishList.all
-    @user_wish_lists = current_user.wish_lists
+    @wish_lists = current_user.wish_lists
   end
 
   def destroy
