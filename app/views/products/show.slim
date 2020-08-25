@@ -3,7 +3,10 @@ h2
   =< link_to @product.category.name, category_path(@product.category_id)
 div = @product.name
 div = [@product.price.to_i, '$'].join
-div = render 'wish_list_items/wish_list_item_form'
+- if current_user.wish_lists.present?
+  div = render 'wish_list_items/form'
+- else
+  div You don't have any wish lists yet!
 div = link_to 'Create a new wishlist', new_wish_list_path(product_id: @product.id)
 
 - if @product.in_stock

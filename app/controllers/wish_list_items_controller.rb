@@ -1,4 +1,5 @@
 class WishListItemsController < ApplicationController
+  before_action :authenticate_user!
   def create
     @wish_list_item = WishListItem.new(wish_list_item_params)
     if @wish_list_item.save
@@ -10,12 +11,12 @@ class WishListItemsController < ApplicationController
   end
 
   def destroy
-    @wish_list_item = WishListItem.find(params[:id])
-      if @wish_list_item.destroy
-        redirect_to wish_list_path(@wish_list_item.wish_list_id)
-      else
-        render 'wish_lists/show'
-      end
+  @wish_list_item = WishListItem.find(params[:id])
+    if @wish_list_item.destroy
+      redirect_to wish_list_path(@wish_list_item.wish_list_id)
+    else
+      render 'wish_lists/show'
+    end
   end
 
   private

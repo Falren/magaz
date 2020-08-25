@@ -6,6 +6,6 @@ div
 div
   | Note:
 
-ul = render partial: 'wish_lists/wish_list_item', collection: @wish_list_items
+ul = render @wish_list_items
 
 div = link_to 'Add items to your wishlist', products_path

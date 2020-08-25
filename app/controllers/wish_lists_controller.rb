@@ -1,4 +1,5 @@
 class WishListsController < ApplicationController
+  before_action :authenticate_user!
   def new
     @wish_list = WishList.new
   end

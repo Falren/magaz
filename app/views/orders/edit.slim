@@ -8,10 +8,7 @@ div
     = form.hidden_field :user_id
     = form.fields_for :address do |addr_form|
       = render 'users/addresses_fields', f: addr_form
-      = form.submit 'Change address'
-    div
     =form.text_area :note
-    br
     =form.submit 'Create order'
 - else
   div 'There are no items yet.'
