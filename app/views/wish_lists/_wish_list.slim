@@ -1,4 +1,0 @@
-= form_for :wish_list_item, url: wish_list_items_path do |form|
-  = form.select :wish_list_id, current_user.wish_lists.all.map { |wl| [wl.name, wl.id] }
-  = form.hidden_field :product_id, value: @product.id
-  = form.submit 'Add product to wish list'

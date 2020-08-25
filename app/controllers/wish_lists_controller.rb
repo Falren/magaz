@@ -5,10 +5,10 @@ class WishListsController < ApplicationController
 
   def create
     @wish_list = WishList.new(wish_list_params)
-    if @wishlist.save
-      redirect_to root_path
+    if @wish_list.save
+      redirect_to product_path(params[:product_id])
     else
-      render 'products/show'
+      render 'wish_lists/new'
     end
   end
 

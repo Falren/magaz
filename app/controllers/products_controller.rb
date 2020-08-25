@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.friendly.find(params[:id])
     @wish_lists = WishList.all
+    @wish_list_item = WishListItem.new(product_id: @product.id)
   end
 
   def new

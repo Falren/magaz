@@ -1,10 +1,10 @@
 class WishListItemsController < ApplicationController
   def create
     @wish_list_item = WishListItem.new(wish_list_item_params)
-    @wish_list = @wish_list_item.wish_list_id
     if @wish_list_item.save
-      redirect_to wish_list_path(@wish_list)
+      redirect_to wish_list_path(@wish_list_item.wish_list_id)
     else
+      @product = @wish_list_item.product
       render 'products/show'
     end
   end
