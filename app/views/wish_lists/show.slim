@@ -1,0 +1,12 @@
+div Your wish list
+div
+  | Name:
+  = @wish_list.name
+
+div
+  | Note:
+  = @wish_list.note
+
+ul = render @wish_list_items
+
+div = link_to 'Add items to your wishlist', products_path

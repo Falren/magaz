@@ -1,12 +1,12 @@
 class LineItemsController < ApplicationController
   before_action :assign_draft_order, only: :create
-
+  before_action :authenticate_user!
   def create
     @line_item = LineItem.new(line_item_params)
     if @order.line_items << @line_item
       redirect_to edit_order_path(@line_item.order_id)
     else
-      render 'new'
+      render 'products/show'
     end
   end
 

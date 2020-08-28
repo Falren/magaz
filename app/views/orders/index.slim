@@ -1,4 +1,6 @@
 div
   =<link_to current_user.email, user_path(current_user.id)
-  |'s orders:
-  ul = render @orders
+div
+  |Your orders:
+  ul = render partial: 'completed_order',  collection: @completed_orders
+

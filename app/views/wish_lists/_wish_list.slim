@@ -1,0 +1,4 @@
+div
+  => link_to wish_list.name, wish_list_path(wish_list.id)
+  | |
+  =< link_to 'Destroy', wish_list_path(wish_list.id), method: :delete, data: {confirm: 'Are you sure you want to delete this wish list?'}

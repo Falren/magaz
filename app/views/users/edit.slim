@@ -10,3 +10,6 @@ hr
   div = f.password_field :password
   div = f.password_field :password_confirmation
   div = f.submit 'Submit'
+
+- if flash.notice
+  div class='notice' = flash.notice

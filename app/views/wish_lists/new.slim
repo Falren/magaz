@@ -1,0 +1,8 @@
+= form_for @wish_list do |form|
+  = form.hidden_field :user_id, value: current_user.id
+  = form.hidden_field '', value: params[:product_id], name: 'product_id'
+  div = form.label :name
+  div = form.text_field :name
+  div = form.label :note
+  div = form.text_area :note
+  div = form.submit

@@ -1,12 +1,13 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
   def index
-    @orders = Order.all
+    @completed_orders = current_user.completed_orders
     @products = Product.all
   end
 
   def show
     @order = Order.find(params[:id])
-    @products = Product.all
+    @line_items = @order.line_items
   end
 
   def new
@@ -31,7 +32,7 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
-      redirect_to order_path(@order)
+      redirect_to orders_path
     else
       render 'edit'
     end
@@ -45,7 +46,6 @@ class OrdersController < ApplicationController
       render 'show'
     end
   end
-
   private
 
   def order_params

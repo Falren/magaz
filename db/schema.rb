@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_18_130106) do
+ActiveRecord::Schema.define(version: 2020_08_24_153857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_08_18_130106) do
     t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "quantity"
     t.index ["order_id"], name: "index_line_items_on_order_id"
     t.index ["product_id"], name: "index_line_items_on_product_id"
   end
@@ -70,8 +71,8 @@ ActiveRecord::Schema.define(version: 2020_08_18_130106) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "category_id", null: false
     t.string "slug"
-    t.integer "quantity"
-    t.boolean "instock"
+    t.integer "quantity", default: 0
+    t.boolean "in_stock"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
@@ -88,8 +89,29 @@ ActiveRecord::Schema.define(version: 2020_08_18_130106) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "wish_list_items", force: :cascade do |t|
+    t.bigint "wish_list_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_wish_list_items_on_product_id"
+    t.index ["wish_list_id"], name: "index_wish_list_items_on_wish_list_id"
+  end
+
+  create_table "wish_lists", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.string "note"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_wish_lists_on_user_id"
+  end
+
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "products"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
+  add_foreign_key "wish_list_items", "products"
+  add_foreign_key "wish_list_items", "wish_lists"
+  add_foreign_key "wish_lists", "users"
 end

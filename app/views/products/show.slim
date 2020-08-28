@@ -1,7 +1,16 @@
 h2
   | Category:
   =< link_to @product.category.name, category_path(@product.category_id)
-
 div = @product.name
 div = [@product.price.to_i, '$'].join
-div = button_to 'Add to shopping cart', line_items_path(line_item: { product_id: @product.id })
+- if current_user.wish_lists.present?
+  div = render 'wish_list_items/form'
+- else
+  div You don't have any wish lists yet!
+div = link_to 'Create a new wishlist', new_wish_list_path(product_id: @product.id)
+
+- if @product.in_stock
+  div 'Product is in stock'
+  div = button_to 'Add to shopping cart', line_items_path(line_item: { product_id: @product.id })
+- else
+  div 'Product is out of stock'

@@ -1,10 +1,13 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, except: %i[ index show ]
   def index
     @products = Product.all
   end
 
   def show
     @product = Product.friendly.find(params[:id])
+    @wish_lists = WishList.all
+    @wish_list_item = WishListItem.new(product_id: @product.id)
   end
 
   def new
@@ -21,6 +24,7 @@ class ProductsController < ApplicationController
       render 'new'
     end
   end
+
   def edit
     @product = Product.friendly.find(params[:id])
     @order = Order.find(params[:id])

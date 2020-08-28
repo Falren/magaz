@@ -1,0 +1,11 @@
+= form_for @wish_list_item do |form|
+  - if @wish_list_item.errors.any?
+    div
+    => pluralize(@wish_list_item.errors.count, 'error')
+    | occured
+    ul
+      - @wish_list_item.errors.full_messages.each do |message|
+        li = message
+  = form.select :wish_list_id, current_user.wish_lists.map { |wl| [wl.name, wl.id] }
+  = form.hidden_field :product_id
+  = form.submit 'Add product to a wish list'
