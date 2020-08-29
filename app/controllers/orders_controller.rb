@@ -46,12 +46,14 @@ class OrdersController < ApplicationController
       render 'show'
     end
   end
+
   private
 
   def order_params
     params.require(:order).permit(
       :user_id, :note, :status,
-      address_attributes: %i[id building_address post_index number]
+      address_attributes: %i[id building_address post_index number],
+      line_item_attibutes: :quantity
     )
   end
 end

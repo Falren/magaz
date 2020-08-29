@@ -8,4 +8,9 @@ class Order < ApplicationRecord
   has_one :address, as: :addressable
   accepts_nested_attributes_for :address
   delegate :post_index, :number, :building_address, to: :address, prefix: false, allow_nil: true
+  after_touch :change_total
+
+  def change_total
+    self.total = line_items.sum(:subtotal)
+  end
 end

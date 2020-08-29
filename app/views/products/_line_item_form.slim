@@ -1,14 +1,6 @@
-- if @line_item
-  = form_for :line_item, url: line_item_path(@line_item), method: :patch do |form|
-    = form.hidden_field :product_id, value: product_id
-    div
-      |Number of items
-      =< form.number_field :quantity, min: 1, max: @product.quantity
-    = form.submit 'Add items'
-- else
-  = form_for :line_item, url: line_items_path do |form|
-    = form.hidden_field :product_id, value: product_id
-    div
-      |Number of items
-      =< form.number_field :quantity, min: 1, max: @product.quantity
-    = form.submit
+= form_for @line_item do |form|
+  = form.hidden_field :product_id
+  div
+    |Number of items
+    =< form.number_field :quantity, min: 1, max: @product.quantity
+  = form.submit

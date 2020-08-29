@@ -16,6 +16,12 @@ class LineItemsController < ApplicationController
     redirect_to edit_order_path(@line_item.order_id)
   end
 
+  def update
+    @line_item = LineItem.find(params[:id])
+    if @line_item.update(line_item_params)
+    redirect_to edit_order_path(@line_item.product_id)
+
+  end
   private
 
   def assign_draft_order
@@ -23,6 +29,6 @@ class LineItemsController < ApplicationController
   end
 
   def line_item_params
-    params.require(:line_item).permit(:product_id)
+    params.require(:line_item).permit(:product_id, :quantity)
   end
 end
