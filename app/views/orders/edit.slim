@@ -14,6 +14,7 @@ div
     = form.fields_for :address do |addr_form|
       = render 'users/addresses_fields', f: addr_form
     =form.text_area :note
+    br
     =form.submit 'Create order'
 - else
   div 'There are no items yet.'

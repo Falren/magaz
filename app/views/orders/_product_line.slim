@@ -6,7 +6,6 @@ li
   div
   | Quantity:
   => form.number_field :quantity, min: 1, max: form.object.product.quantity
-  = form.submit
   div
   | Subtotal:
   =< number_to_currency(form.object.subtotal, precision: 0)

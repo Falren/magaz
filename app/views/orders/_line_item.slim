@@ -1,0 +1,14 @@
+li
+  div
+    | Product name:
+    =< link_to line_item.product_name, product_path(line_item.product)
+  div
+    | Quanitity:
+    =< line_item.quantity
+  div
+    | Product price:
+    =< number_to_currency(line_item.product_price, precision: 0)
+  div
+    | Subtotal:
+    =< number_to_currency(line_item.subtotal, precision: 0)
+

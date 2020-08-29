@@ -3,7 +3,8 @@ div Order details:
 div
   | Total:
   =< number_to_currency(@order.total, precision: 0)
-div = render 'line_item'
+ol
+  div = render partial: 'line_item', collection: @line_items
 br
 div Adress
 div
