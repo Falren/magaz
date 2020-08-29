@@ -2,7 +2,7 @@ h2
   | Category:
   =< link_to @product.category.name, category_path(@product.category_id)
 div = @product.name
-div = [@product.price.to_i, '$'].join
+div = number_to_currency(@product.price.to_i, precision: 0)
 - if current_user.wish_lists.present?
   div = render 'wish_list_items/form'
 - else

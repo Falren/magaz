@@ -12,4 +12,4 @@ div
     =form.submit 'Create order'
 - else
   div 'There are no items yet.'
-= request.referer ? (link_to 'Back', URI(request.referer).path) : (link_to 'Browse', root_path)
+= link_to 'Browse', root_path
