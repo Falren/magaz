@@ -1,9 +1,14 @@
-= @order.user.email
-
+div = link_to @order.user.email, user_path(@order.user)
+br
+div
+  | Total:
+  =< @order.total
 div
 - if @order.line_items.present?
   = form_for @order do |form|
-    = render partial: 'product_line', collection: @line_items, as: :line_item
+    ol
+      = form.fields_for :line_items do |li_form|
+        = render 'product_line', form: li_form
     = form.hidden_field :status, value: :completed
     = form.hidden_field :user_id
     = form.fields_for :address do |addr_form|

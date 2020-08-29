@@ -7,6 +7,7 @@ class Order < ApplicationRecord
 
   has_one :address, as: :addressable
   accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :line_items
   delegate :post_index, :number, :building_address, to: :address, prefix: false, allow_nil: true
   after_touch :change_total
 

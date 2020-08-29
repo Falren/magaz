@@ -19,8 +19,10 @@ class LineItemsController < ApplicationController
   def update
     @line_item = LineItem.find(params[:id])
     if @line_item.update(line_item_params)
-    redirect_to edit_order_path(@line_item.product_id)
-
+      redirect_to product_path(@line_item.product_id)
+    else
+      render 'product/show'
+    end
   end
   private
 
