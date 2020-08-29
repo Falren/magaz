@@ -1,0 +1,11 @@
+= form_for @product do |form|
+  = form.label :quantity
+  = form.number_field :quantity
+
+  = form.label :name
+  = form.text_field :name
+
+  = form.number_field :price
+  = form.label :price
+
+  = form.submit 'Update product fields'
