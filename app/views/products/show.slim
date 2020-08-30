@@ -11,6 +11,7 @@ div = link_to 'Create a new wishlist', new_wish_list_path(product_id: @product.i
 
 - if @product.in_stock
   div 'Product is in stock'
+  = link_to "Shopping cart", edit_order_path(current_user.drafted_order)
   = render 'line_item_form'
 - else
   div 'Product is out of stock'

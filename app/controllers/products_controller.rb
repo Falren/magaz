@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
     @product = Product.friendly.find(params[:id])
     @wish_lists = WishList.all
     @wish_list_item = WishListItem.new(product_id: @product.id)
-    @line_item = current_user.drafted_order.line_items.find_by(product_id: @product.id) || LineItem.new(product_id: @product.id)
+    @line_item = current_user.drafted_order&.line_items&.find_by(product_id: @product.id) || LineItem.new(product_id: @product.id)
   end
 
   def new

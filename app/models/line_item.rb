@@ -5,6 +5,7 @@ class LineItem < ApplicationRecord
   delegate :name, :price, :quantity, to: :product, prefix: true, allow_nil: true
 
   before_save :change_subtotal, if: :will_save_change_to_quantity?
+  validates_uniqueness_of :product_id, scope: :order_id
 
   private
 
