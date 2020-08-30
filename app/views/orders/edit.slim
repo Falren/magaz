@@ -2,7 +2,7 @@ div = link_to @order.user.email, user_path(@order.user)
 br
 div
   | Total:
-  =< @order.total
+  =< number_to_currency(@order.total, precision: 0)
 div
 - if @order.line_items.present?
   = form_for @order do |form|
