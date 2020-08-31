@@ -1,15 +1,23 @@
-= @order.user.email
-
+div = link_to @order.user.email, user_path(@order.user)
+br
+div
+  | Total:
+  =< number_to_currency(@order.total, precision: 0)
 div
 - if @order.line_items.present?
   = form_for @order do |form|
-    = render partial: 'product_line', collection: @line_items, as: :line_item
+    ol
+      = form.fields_for :line_items do |li_form|
+        = render 'product_line', form: li_form
     = form.hidden_field :status, value: :completed
     = form.hidden_field :user_id
     = form.fields_for :address do |addr_form|
       = render 'users/addresses_fields', f: addr_form
-    =form.text_area :note
-    =form.submit 'Create order'
+    div = form.label :note
+    div = form.text_area :note
+    div = form.submit 'Create order'
 - else
   div 'There are no items yet.'
-= request.referer ? (link_to 'Back', URI(request.referer).path) : (link_to 'Browse', root_path)
+- if flash.notice
+  div class='notice' = flash.notice
+= link_to 'Browse', root_path

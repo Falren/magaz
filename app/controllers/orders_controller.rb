@@ -34,6 +34,7 @@ class OrdersController < ApplicationController
     if @order.update(order_params)
       redirect_to orders_path
     else
+      flash[:notice] = 'You must fill the address fields'
       render 'edit'
     end
   end
@@ -46,11 +47,13 @@ class OrdersController < ApplicationController
       render 'show'
     end
   end
+
   private
 
   def order_params
     params.require(:order).permit(
       :user_id, :note, :status,
+      line_items_attributes: %i[quantity id],
       address_attributes: %i[id building_address post_index number]
     )
   end

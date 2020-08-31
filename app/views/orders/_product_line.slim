@@ -1,3 +1,11 @@
 li
-  = line_item.product_name
-  =< link_to 'Delete', line_item_path(line_item), method: :delete, data: { confirm: 'Normalno?' }
+  div
+  => link_to form.object.product_name, product_path(form.object.product_id)
+  | |
+  =< link_to 'Delete', line_item_path(form.object.id), method: :delete, data: { confirm: 'Normalno?' }
+  div
+  | Quantity:
+  => form.number_field :quantity, min: 1, max: form.object.product.quantity
+  div
+  | Subtotal:
+  =< number_to_currency(form.object.subtotal, precision: 0)

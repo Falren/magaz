@@ -1,6 +1,28 @@
-div = current_user.email
-div = @order.post_index
-div = @order.number
-div = @order.building_address
-div = @order.note
-div = link_to 'Go to the profile page', orders_path
+div
+  = link_to @order.user.email, user_path(@order.user.id)
+  |'s orders
+div Order details:
+div
+  | Status:
+  =< @order.status
+
+div
+  | Total:
+  =< number_to_currency(@order.total, precision: 0)
+ol
+  div = render partial: 'line_item', collection: @line_items
+br
+div Adress
+div
+  | Post index:
+  =< @order.post_index
+div
+  | Number:
+  =< @order.number
+div
+  |Building:
+  =< @order.building_address
+div
+  | Note:
+  =< @order.note
+div = link_to 'Go to orders', orders_path
