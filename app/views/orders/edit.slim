@@ -18,4 +18,6 @@ div
     div = form.submit 'Create order'
 - else
   div 'There are no items yet.'
+- if flash.notice
+  div class='notice' = flash.notice
 = link_to 'Browse', root_path
