@@ -9,6 +9,8 @@ class ProductsController < ApplicationController
     @wish_lists = WishList.all
     @wish_list_item = WishListItem.new(product_id: @product.id)
     @line_item = current_user.drafted_order&.line_items&.find_by(product_id: @product.id) || LineItem.new(product_id: @product.id)
+    @review = Review.new(product_id: @product.id)
+    @reviews = @product.reviews
   end
 
   def new
