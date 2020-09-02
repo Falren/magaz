@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_01_111405) do
+ActiveRecord::Schema.define(version: 2020_09_02_143030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,17 @@ ActiveRecord::Schema.define(version: 2020_09_01_111405) do
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.text "body"
+    t.integer "rating", default: 0
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_reviews_on_product_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -136,6 +147,8 @@ ActiveRecord::Schema.define(version: 2020_09_01_111405) do
   add_foreign_key "line_items", "products"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
+  add_foreign_key "reviews", "products"
+  add_foreign_key "reviews", "users"
   add_foreign_key "wish_list_items", "products"
   add_foreign_key "wish_list_items", "wish_lists"
   add_foreign_key "wish_lists", "users"
