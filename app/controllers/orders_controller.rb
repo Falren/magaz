@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
     if @order.update(order_params)
       redirect_to orders_path
     else
-      flash[:notice] = 'You must fill the address fields'
+      flash.keep[:notice] = 'You must fill the fields with an asterisk'
       render 'edit'
     end
   end

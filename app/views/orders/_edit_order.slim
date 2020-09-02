@@ -1,0 +1,11 @@
+  = form_for order do |form|
+    ol
+      = form.fields_for :line_items do |li_form|
+        = render 'product_line', form: li_form
+    = form.hidden_field :status, value: :completed
+    = form.hidden_field :user_id
+    = form.fields_for :address do |addr_form|
+      = render 'users/addresses_fields', f: addr_form
+    div = form.label :note
+    div = form.text_area :note
+    div = form.submit 'Create order'

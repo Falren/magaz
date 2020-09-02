@@ -50,6 +50,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :price, :category_id)
+    params.require(:product).permit(%i[quantity name price category_id main_image images: []])
   end
 end
