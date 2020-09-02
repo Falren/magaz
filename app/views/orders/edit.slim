@@ -4,20 +4,7 @@ div
   | Total:
   =< number_to_currency(@order.total, precision: 0)
 div
-- if @order.line_items.present?
-  = form_for @order do |form|
-    ol
-      = form.fields_for :line_items do |li_form|
-        = render 'product_line', form: li_form
-    = form.hidden_field :status, value: :completed
-    = form.hidden_field :user_id
-    = form.fields_for :address do |addr_form|
-      = render 'users/addresses_fields', f: addr_form
-    div = form.label :note
-    div = form.text_area :note
-    div = form.submit 'Create order'
-- else
-  div 'There are no items yet.'
+= @order.line_items.present? ? render('edit_order', order: @order) : 'There are no items yet.'
 - if flash.notice
   div class='notice' = flash.notice
 = link_to 'Browse', root_path

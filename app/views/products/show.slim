@@ -1,25 +1,24 @@
 h2
   | Category:
 div
+  = image_tag(@product.product_image)
   = @product.images.each do |image|
-    = image_tag(image)
+    = image_tag(image, )
   =< link_to @product.category.name, category_path(@product.category_id)
 div
   => @product.name
   | |
   =< link_to 'Delete', product_path(@product), method: :delete, data: {confirm: 'Are you sure about that?'}
 div = number_to_currency(@product.price.to_i, precision: 0)
-- if current_user.wish_lists.present?
-  div = render 'wish_list_items/form'
-- else
-  div You don't have any wish lists yet!
+
+= current_user.wish_lists.present? ? render('wish_list_items/form') : 'You don't have any wish lists yet!
 
 div = link_to 'Create a new wishlist', new_wish_list_path(product_id: @product.id)
 
 - if @product.in_stock
   div 'Product is in stock'
 - if current_user.drafted_order
-  = link_to "Shopping cart", edit_order_path(current_user.drafted_order)
-  = render 'line_item_form'
+  div = link_to "Shopping cart", edit_order_path(current_user.drafted_order)
+  div = render 'line_item_form'
 - else
   div 'Product is out of stock'

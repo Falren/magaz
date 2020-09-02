@@ -9,6 +9,7 @@ class Product < ApplicationRecord
 
   has_many :line_items
   has_many :orders, through: :line_items
+  has_one_attached :main_image
   has_many_attached :images
   validates_size_of :images, maximum: 5
 
