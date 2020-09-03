@@ -17,13 +17,17 @@ div = number_to_currency(@product.price.to_i, precision: 0)
 div = link_to 'Create a new wishlist', new_wish_list_path(product_id: @product.id)
 
 - if @product.in_stock
-  div 'Product is in stock'
+  div Product is in stock
+- else
+  div Product is out of stock
+
 - if current_user.drafted_order
   div = link_to 'Shopping cart', edit_order_path(current_user.drafted_order)
   div = render 'line_item_form'
 - else
-  div 'Product is out of stock'
+  div = render 'line_item_form'
 
-- if current_user
+h1 Buyers' reviews
+- if @bought_product
   = render 'review_form', product_id: @product.id
 = render @reviews

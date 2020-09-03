@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   has_many :wish_list_items
   has_many :wish_lists, through: :wish_list_items
 
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   has_many :line_items
   has_many :orders, through: :line_items
   has_one_attached :main_image

@@ -1,5 +1,7 @@
-div
-  = review.rating
-  | \5
+div = review.user.email
 
 div = review.body
+div
+  | Rating
+  =< review.rating
+  | \5
