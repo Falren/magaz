@@ -5,18 +5,22 @@ div
   => @product.name
   | |
   =< link_to 'Delete', product_path(@product), method: :delete, data: {confirm: 'Are you sure about that?'}
-div class='' id='main_image'
-  = image_tag(@product.main_image, size = '500x400') if @product.main_image.attached?
-
+div = image_tag(@product.main_image, size = '500x400') if @product.main_image.attached?
 - @product.images.each do |image|
-  div class=''
-    = image_tag(image, size: '100x50')
+    div class=''
+      = image_tag(image, size: '100x50')
 
-div = number_to_currency(@product.price.to_i, precision: 0)
-= current_user.wish_lists.present? ? render('wish_list_items/form') : "You don't have any wish lists yet!"
+div
+  |Price:
+  =< number_to_currency(@product.price.to_i, precision: 0)
+div
+  |Rating:
+  =< @product.average_rating
+  |/5
+div = current_user.wish_lists.present? ? render('wish_list_items/form') : "You don't have any wish lists yet!"
 div = link_to 'Create a new wishlist', new_wish_list_path(product_id: @product.id)
 
-- if @product.in_stock
+- if @product.status[:in_stock]
   div Product is in stock
 - else
   div Product is out of stock

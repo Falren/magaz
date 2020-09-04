@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_02_143114) do
+ActiveRecord::Schema.define(version: 2020_09_04_143808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 2020_09_02_143114) do
     t.integer "quantity", default: 0
     t.boolean "in_stock"
     t.float "average_rating", default: 0.0
+    t.integer "status", default: 0
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
