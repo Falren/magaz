@@ -4,7 +4,8 @@ h2
 div
   => @product.name
   | |
-  =< link_to 'Delete', product_path(@product), method: :delete, data: {confirm: 'Are you sure about that?'}
+  =< link_to 'Archive product', product_path(@product, product: { status: :archived }), method: :patch, data: { confirm: 'Are you sure about that?' }
+
 div = image_tag(@product.main_image, size = '500x400') if @product.main_image.attached?
 - @product.images.each do |image|
     div class=''
@@ -15,21 +16,22 @@ div
   =< number_to_currency(@product.price.to_i, precision: 0)
 div
   |Rating:
-  =< @product.average_rating
+  =< number_with_precision(@product.average_rating, precision: 1)
   |/5
 div = current_user.wish_lists.present? ? render('wish_list_items/form') : "You don't have any wish lists yet!"
+
 div = link_to 'Create a new wishlist', new_wish_list_path(product_id: @product.id)
 
-- if @product.status[:in_stock]
+- if current_user.drafted_order && @product.in_stock?
   div Product is in stock
-- else
+  div = render 'line_item_form'
+  div = link_to 'shopping cart', edit_order_path(current_user.drafted_order)
+- elsif @product.out_of_stock?
   div Product is out of stock
-
-- if current_user.drafted_order
-  div = link_to 'Shopping cart', edit_order_path(current_user.drafted_order)
-  div = render 'line_item_form'
-- else
-  div = render 'line_item_form'
+- elsif @product.in_stock?
+  div
+    | Product is in stock
+    = render 'line_item_form'
 
 h1 Buyers' reviews
 - if @bought_product

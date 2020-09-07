@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.friendly.find(params[:id])
-    if @product.upadte(product_params)
+    if @product.update(product_params)
       redirect_to product_path(@product)
     else
       render 'edit'
@@ -53,6 +53,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(%i[quantity name price category_id main_image images: []])
+    params.require(:product).permit(:status, :quantity, :name, :price, :category_id, :main_image, images: [])
   end
 end
