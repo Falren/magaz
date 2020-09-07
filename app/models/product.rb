@@ -20,12 +20,17 @@ class Product < ApplicationRecord
 
   validates :name, uniqueness: true
   after_touch :update_rating
-  after_save :assign_in_stock,  if: :quantity_previously_changed?
+  before_save :assign_in_stock, if: :quantity_previously_changed?
+  before_save :deplete_quantity, if: %i[will_save_change_to_status? archived?]
 
   private
 
+  def deplete_quantity
+    self.quantity = 0
+  end
+
   def update_rating
-    update(average_rating: reviews.sum(:rating) / reviews.size)
+    self.average_rating = reviews.sum(:rating) / reviews.size
   end
 
   def assign_in_stock
