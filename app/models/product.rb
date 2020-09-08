@@ -20,7 +20,7 @@ class Product < ApplicationRecord
 
   validates :name, uniqueness: true
   after_touch :update_rating
-  before_save :assign_in_stock, if: :quantity_previously_changed?
+  before_save :assign_in_stock, if: -> { will_save_change_to_quantity? && !archived? }
   before_save :deplete_quantity, if: %i[will_save_change_to_status? archived?]
 
   private

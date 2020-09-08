@@ -1,5 +1,5 @@
 = form_for @review do |form|
-  = form.hidden_field :user_id, value: current_user.id
+  = form.hidden_field :user_id
   = form.hidden_field :product_id
   div = form.text_area :body, placeholder: 'Your review...'
   div = form.label :rating, 'Your rating'

@@ -13,7 +13,7 @@ class Order < ApplicationRecord
 
   delegate :post_index, :number, :building_address, to: :address, prefix: false, allow_nil: true
   after_touch :update_total
-  before_update :update_product_quantity, if: :will_save_change_to_status?
+  before_update :update_product_quantity, if: %i[will_save_change_to_status? completed?]
 
   private
 

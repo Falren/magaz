@@ -4,6 +4,6 @@ hr
 div Out of stock products
 ul = render @products.out_of_stock
 hr
--if current_user.admin
-div Archived products
-ul = render @products.archived
+- if current_user.admin
+  div Archived products
+  ul = render @products.archived

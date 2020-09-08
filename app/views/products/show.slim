@@ -11,28 +11,24 @@ div = image_tag(@product.main_image, size = '500x400') if @product.main_image.at
     div = image_tag(image, size: '100x50')
 
 div
-  |Price:
+  | Price:
   =< number_to_currency(@product.price.to_i, precision: 0)
 div
-  |Rating:
+  | Rating:
   =< number_with_precision(@product.average_rating, precision: 1)
-  |/5
+  | /5
 div = current_user.wish_lists.present? ? render('wish_list_items/form') : "You don't have any wish lists yet!"
 
 div = link_to 'Create a new wishlist', new_wish_list_path(product_id: @product.id)
 
-- if current_user.drafted_order && @product.in_stock?
+- if @product.in_stock?
   div Product is in stock
   div = render 'line_item_form'
-  div = link_to 'shopping cart', edit_order_path(current_user.drafted_order)
-- elsif @product.out_of_stock?
+  div = link_to 'shopping cart', edit_order_path(current_user.drafted_order) if current_user.drafted_order
+- else
   div Product is out of stock
-- elsif @product.in_stock?
-  div
-    | Product is in stock
-    = render 'line_item_form'
 
 h1 Buyers' reviews
 - if @bought_product
-  = render 'review_form', product_id: @product.id
+  = render 'review_form'
 = render @reviews
