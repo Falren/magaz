@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
     @line_item = current_user.drafted_order&.line_items&.find_by(product_id: @product.id) || LineItem.new(product_id: @product.id)
     @review = Review.new(product_id: @product.id, user_id: current_user.id)
     @reviews = @product.reviews
-    @bought_product = current_user.line_items.find_by(product_id: @product.id, orders: {status: :completed})
+    @bought_product = current_user.line_items.find_by(product_id: @product.id, orders: { status: :completed })
   end
 
   def new
