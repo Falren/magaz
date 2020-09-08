@@ -9,6 +9,9 @@ class ProductsController < ApplicationController
     @wish_lists = WishList.all
     @wish_list_item = WishListItem.new(product_id: @product.id)
     @line_item = current_user.drafted_order&.line_items&.find_by(product_id: @product.id) || LineItem.new(product_id: @product.id)
+    @review = Review.new(product_id: @product.id, user_id: current_user.id)
+    @reviews = @product.reviews
+    @bought_product = current_user.line_items.find_by(product_id: @product.id, orders: { status: :completed })
   end
 
   def new
@@ -33,7 +36,7 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.friendly.find(params[:id])
-    if @product.upadte(product_params)
+    if @product.update(product_params)
       redirect_to product_path(@product)
     else
       render 'edit'
@@ -50,6 +53,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(%i[quantity name price category_id main_image images: []])
+    params.require(:product).permit(:status, :quantity, :name, :price, :category_id, :main_image, images: [])
   end
 end

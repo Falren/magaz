@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   resources :line_items
   resources :wish_lists
   resources :wish_list_items
+  resources :reviews
   root 'home#index'
 end
