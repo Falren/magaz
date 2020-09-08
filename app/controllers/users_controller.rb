@@ -15,8 +15,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       sign_in(@user, bypass: true)
-      flash.notice = 'Settings have been succesfully updated'
-      redirect_to edit_user_path(@user)
+      redirect_to edit_user_path(@user), notice: 'Settings have been succesfully updated'
     end
   end
 
