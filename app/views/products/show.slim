@@ -5,7 +5,8 @@ div
   => @product.name
   | |
   =< link_to 'Archive product', product_path(@product, product: { status: :archived }), method: :patch, data: { confirm: 'Are you sure about that?' }
-
+- if current_user.admin?
+  =< link_to 'Edit', edit_product_path(@product)
 div = image_tag(@product.main_image, size = '500x400') if @product.main_image.attached?
 - @product.images.each do |image|
     div = image_tag(image, size: '100x50')

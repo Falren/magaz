@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_admin
   def show
     @category = Category.friendly.find(params[:id])
     @products = Product.all
@@ -42,6 +43,10 @@ class CategoriesController < ApplicationController
   end
 
   private
+
+  def authorize_admin
+    authorize(:category)
+  end
 
   def category_params
     params.require(:category).permit(:name)

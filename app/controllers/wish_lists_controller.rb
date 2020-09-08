@@ -1,5 +1,6 @@
 class WishListsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_admin
   def new
     @wish_list = WishList.new
   end
@@ -32,7 +33,9 @@ class WishListsController < ApplicationController
   end
 
   private
-
+  def authorize_admin
+    authorize(:wish_list)
+  end
   def wish_list_params
     params.require(:wish_list).permit(:user_id, :name, :note)
   end

@@ -1,5 +1,6 @@
 class WishListItemsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_admin
   def create
     @wish_list_item = WishListItem.new(wish_list_item_params)
     if @wish_list_item.save
@@ -20,7 +21,9 @@ class WishListItemsController < ApplicationController
   end
 
   private
-
+  def authorize_admin
+    authorize(:wish_list_item)
+  end
   def wish_list_item_params
     params.require(:wish_list_item).permit(:product_id, :wish_list_id)
   end

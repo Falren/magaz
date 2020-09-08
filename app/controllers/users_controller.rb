@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_admin
   def show
     @user = User.find(params[:id])
     @drafted_order = current_user.drafted_order
@@ -21,6 +22,9 @@ class UsersController < ApplicationController
 
   private
 
+  def authorize_admin
+    authorize(:user)
+  end
   def user_params
     params.require(:user).permit(
       :email, :password, :password_confirmation,

@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, except: %i[ index show ]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :authorize_admin
+
   def index
     @products = Product.all
   end
@@ -46,13 +48,20 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.friendly.find(params[:id])
     if @product.destroy
-      redirect_to products_path
+      redirect_to products_path, notice: "#{@product.name} has been successfully deleted."
     else
+      flash[:notice] = 'Ooops. Something went wrong. Try later'
       render 'show'
     end
   end
 
+  private
+
   def product_params
     params.require(:product).permit(:status, :quantity, :name, :price, :category_id, :main_image, images: [])
+  end
+
+  def authorize_admin
+    authorize(:product)
   end
 end
