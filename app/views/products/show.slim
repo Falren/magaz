@@ -8,8 +8,7 @@ div
 
 div = image_tag(@product.main_image, size = '500x400') if @product.main_image.attached?
 - @product.images.each do |image|
-    div class=''
-      = image_tag(image, size: '100x50')
+    div = image_tag(image, size: '100x50')
 
 div
   |Price:
