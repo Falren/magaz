@@ -1,3 +1,4 @@
+div = flash.notice
 h1 Ultra Magaz
 - unless current_user
   div = link_to 'Sign in', new_user_session_path
@@ -10,3 +11,4 @@ h1 Ultra Magaz
   h1 = link_to 'Browse', products_path
   h1 Categories
   ul = render @categories
+- if flash.notice
