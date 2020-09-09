@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
     @wish_list_item = WishListItem.new(product_id: @product.id)
     @line_item = current_user.drafted_order&.line_items&.find_by(product_id: @product.id) || LineItem.new(product_id: @product.id)
     @review = Review.new(product_id: @product.id, user_id: current_user.id)
-    @reviews = @product.reviews
+    @reviews = @product.reviews.limit(3)
     @bought_product = current_user.line_items.find_by(product_id: @product.id, orders: { status: :completed })
   end
 
