@@ -1,4 +1,4 @@
-div = flash.notice if flash.notice
+div = flash.notice
 h2
   | Category:
   =< link_to @product.category.name, category_path(@product.category_id)
@@ -7,7 +7,7 @@ div
   | |
   =< link_to 'Archive product', product_path(@product, product: { status: :archived }), method: :patch, data: { confirm: 'Are you sure about that?' }
   | |
-  =< link_to 'Edit', edit_product_path(@product) if current_user
+  =< link_to 'Edit', edit_product_path(@product) if current_user.admin?
 div = image_tag(@product.main_image, size = '500x400') if @product.main_image.attached?
 - @product.images.each do |image|
     div = image_tag(image, size: '100x50')
