@@ -1,5 +1,5 @@
 class WishListItemPolicy < ApplicationPolicy
-  def create
+  def create?
     true
   end
 

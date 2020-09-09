@@ -7,7 +7,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin? || user
+   user
   end
 
   def edit?

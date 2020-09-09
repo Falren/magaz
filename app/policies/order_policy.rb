@@ -1,13 +1,13 @@
 class OrderPolicy < ApplicationPolicy
   def create?
-    user.admin? || user
+    user
   end
   def new?
     create?
   end
 
   def update?
-    user.admin? || record.user_id
+    create?
   end
 
   def edit?

@@ -1,6 +1,6 @@
 class LineItemPolicy < ApplicationPolicy
   def create?
-    true
+    user
   end
 
   def new?
@@ -8,11 +8,11 @@ class LineItemPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.admin? || record.user_id
+    create?
   end
 
   def destroy?
-    user.admin? || record.user_id
+    create?
   end
   class Scope < Scope
     def resolve

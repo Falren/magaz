@@ -33,7 +33,7 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.friendly.find(params[:id])
-    @order = Order.find(params[:id])
+    #@order = Order.find(params[:id])
   end
 
   def update
