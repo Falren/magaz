@@ -1,6 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authorize_admin
+  include Authorizable
   def create
     @review = Review.new(review_params)
     if @review.save
@@ -12,10 +11,6 @@ class ReviewsController < ApplicationController
   end
 
   private
-
-  def authorize_admin
-    authorize(:review)
-  end
 
   def review_params
     params.require(:review).permit(:body, :rating, :user_id, :product_id)

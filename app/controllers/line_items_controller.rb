@@ -1,7 +1,6 @@
 class LineItemsController < ApplicationController
   before_action :assign_draft_order, only: :create
-  before_action :authenticate_user!
-  before_action :authorize_admin
+  include Authorizable
   def create
     @line_item = LineItem.new(line_item_params)
     if @order.line_items << @line_item
@@ -30,10 +29,6 @@ class LineItemsController < ApplicationController
 
   def assign_draft_order
     @order = Order.drafted.where(user_id: current_user.id).first_or_create
-  end
-
-  def authorize_admin
-    authorize(:line_item)
   end
 
   def line_item_params

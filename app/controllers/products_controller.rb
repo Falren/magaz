@@ -1,7 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
-  before_action :authorize_admin
-
+  include Authorizable
   def index
     @products = Product.all
   end
@@ -58,9 +56,5 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:status, :quantity, :name, :price, :category_id, :main_image, images: [])
-  end
-
-  def authorize_admin
-    authorize(:product)
   end
 end

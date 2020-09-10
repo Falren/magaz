@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authorize_admin
+  include Authorizable
   def index
     @completed_orders = current_user.completed_orders
     @products = Product.all
@@ -56,8 +55,5 @@ class OrdersController < ApplicationController
       line_items_attributes: %i[quantity id],
       address_attributes: %i[id building_address post_index number]
     )
-  end
-  def authorize_admin
-    authorize(:order)
   end
 end
