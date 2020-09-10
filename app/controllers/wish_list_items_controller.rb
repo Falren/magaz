@@ -1,5 +1,6 @@
 class WishListItemsController < ApplicationController
-  before_action :authenticate_user!
+  include Authorizable
+
   def create
     @wish_list_item = WishListItem.new(wish_list_item_params)
     if @wish_list_item.save

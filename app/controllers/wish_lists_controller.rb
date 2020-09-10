@@ -1,5 +1,6 @@
 class WishListsController < ApplicationController
-  before_action :authenticate_user!
+  include Authorizable
+
   def new
     @wish_list = WishList.new
   end

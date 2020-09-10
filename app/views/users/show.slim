@@ -5,5 +5,5 @@ div = @wish_lists.present? ? (link_to 'Your wish lists', wish_lists_path) : (lin
 
 div = @drafted_order ? (link_to 'Shopping cart', edit_order_path(current_user.drafted_order.id)) : 'Shopping cart is blank'
 div = @completed_orders.present? ? (link_to 'Orders', orders_path) : 'You have no orders yet'
-
+div = link_to 'Wish lists', wish_lists_path
 div = link_to 'Back', root_path

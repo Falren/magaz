@@ -1,10 +1,12 @@
 class ReviewsController < ApplicationController
+  include Authorizable
+  
   def create
     @review = Review.new(review_params)
     if @review.save
-      flash[:notice] = 'Review has been successfully created'
+      flash.notice = 'Review has been successfully created'
     else
-      flash[:notice] = 'Something went wrong'
+      flash.notice = 'Something went wrong'
     end
     redirect_to product_path(@review.product_id)
   end

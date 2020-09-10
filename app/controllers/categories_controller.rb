@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
-  before_action :authenticate_user!
+  include Authorizable
+  
   def show
     @category = Category.friendly.find(params[:id])
     @products = Product.all

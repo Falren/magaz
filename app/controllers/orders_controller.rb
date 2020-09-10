@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
+  include Authorizable
+
   def index
     @completed_orders = current_user.completed_orders
     @products = Product.all
@@ -34,8 +35,7 @@ class OrdersController < ApplicationController
     if @order.update(order_params)
       redirect_to orders_path
     else
-      flash.keep[:notice] = 'You must fill the fields with an asterisk'
-      render 'edit'
+      render 'edit', notice: 'You must fill the fields with an asterisk'
     end
   end
 
