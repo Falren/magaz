@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
   add_flash_types :notice
-  include Pundit
 
+  include Pagy::Backend
+
+  include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_admin
 
   private

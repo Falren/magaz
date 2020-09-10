@@ -1,4 +1,5 @@
-.notice_div = flash.notice if flash.notice
+- if flash.notice
+    .notice_div = flash.notice
 h1 Ultra Magaz
 - unless current_user
   div = link_to 'Sign in', new_user_session_path

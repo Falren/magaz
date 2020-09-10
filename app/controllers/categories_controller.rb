@@ -1,9 +1,9 @@
 class CategoriesController < ApplicationController
   include Authorizable
-  
+
   def show
     @category = Category.friendly.find(params[:id])
-    @products = Product.all
+    @products = current_user.admin? ? Product.all.order(:status) : Product.all.products_for_users.order(:status)
   end
 
   def new
