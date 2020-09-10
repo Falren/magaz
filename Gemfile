@@ -17,13 +17,16 @@ gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'bootstrap'
 gem 'devise'
 gem 'jbuilder', '~> 2.7'
+gem 'jquery-rails'
 gem 'slim'
 
 gem 'friendly_id', '~> 5.2.4'
+gem 'pagy', '~> 3.5'
 gem 'pundit'
-
+gem 'sprockets-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'awesome_print'

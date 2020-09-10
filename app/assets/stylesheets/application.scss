@@ -1,0 +1,37 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+* vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+* files in this directory. Styles in this file should be added after the last require_* statement.
+* It is generally better to create a new file per style scope.
+*
+*/
+* {
+  font-family: Arial, Helvetica, sans-serif
+}
+ .notice_div  {
+   color: white;
+   border: 3px solid #cc0000;
+   background-color: #cc0000c9;
+   right: 0;
+   position: fixed;
+   text-align: center;
+   padding: 16px;
+   border-radius: 2px;
+   animation: notice_div 5s;
+   animation-fill-mode: forwards;
+}
+
+@keyframes notice_div {
+  from { opacity: 1; }
+  to   { opacity: 0;}
+}
+
+.field_with_errors {
+  color: red;
+}

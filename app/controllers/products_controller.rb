@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
   include Authorizable
-  
+
   def index
-    @products = Product.all
+    @pagy, @products = pagy(current_user.admin? ? Product.all.order(:status) : Product.not_archived.order(:status), items: 9)
   end
 
   def show
@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
     @wish_list_item = WishListItem.new(product_id: @product.id)
     @line_item = current_user.drafted_order&.line_items&.find_by(product_id: @product.id) || LineItem.new(product_id: @product.id)
     @review = Review.new(product_id: @product.id, user_id: current_user.id)
-    @reviews = @product.reviews.limit(3)
+    @reviews = @product.reviews
     @bought_product = current_user.line_items.find_by(product_id: @product.id, orders: { status: :completed })
   end
 
