@@ -4,15 +4,10 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.admin? || record.user_id
+    user.admin? || record.user_id == user
   end
 
   def destroy?
-    user.admin? || record.user.id
-  end
-  class Scope < Scope
-    def resolve
-        scope.all
-    end
+    user.admin? || record.user_id == user
   end
 end

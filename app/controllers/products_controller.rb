@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   include Authorizable
+  
   def index
     @products = Product.all
   end

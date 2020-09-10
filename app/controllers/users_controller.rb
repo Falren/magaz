@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   include Authorizable
+
   def show
     @user = User.find(params[:id])
     @drafted_order = current_user.drafted_order

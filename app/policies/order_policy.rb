@@ -13,10 +13,4 @@ class OrderPolicy < ApplicationPolicy
   def edit?
     update?
   end
-
-  class Scope < Scope
-    def resolve
-      scope.all
-    end
-  end
 end

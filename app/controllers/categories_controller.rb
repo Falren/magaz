@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   include Authorizable
+  
   def show
     @category = Category.friendly.find(params[:id])
     @products = Product.all

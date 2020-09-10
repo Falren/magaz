@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   include Authorizable
+  
   def create
     @review = Review.new(review_params)
     if @review.save

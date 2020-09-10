@@ -1,5 +1,6 @@
 class WishListsController < ApplicationController
   include Authorizable
+
   def new
     @wish_list = WishList.new
   end

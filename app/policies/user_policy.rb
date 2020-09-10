@@ -16,10 +16,4 @@ class UserPolicy < ApplicationPolicy
   def destroy
     update?
   end
-
-  class Scope < Scope
-    def resolve
-      scope.all
-    end
-  end
 end

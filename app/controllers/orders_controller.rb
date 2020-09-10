@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   include Authorizable
+
   def index
     @completed_orders = current_user.completed_orders
     @products = Product.all

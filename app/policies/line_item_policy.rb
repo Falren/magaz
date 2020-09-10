@@ -14,8 +14,4 @@ class LineItemPolicy < ApplicationPolicy
   def destroy?
     create?
   end
-  class Scope < Scope
-    def resolve
-    end
-  end
 end
