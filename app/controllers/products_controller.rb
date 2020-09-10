@@ -2,8 +2,7 @@ class ProductsController < ApplicationController
   include Authorizable
 
   def index
-    @products = current_user.admin? ? Product.all.order(:status) : Product.all.products_for_users.order(:status)
-    @pagy, @products = pagy(current_user.admin? ? Product.all.order(:status) : Product.all.products_for_users.order(:status), items: 9)
+    @pagy, @products = pagy(current_user.admin? ? Product.all.order(:status) : Product.not_archived.order(:status), items: 9)
   end
 
   def show

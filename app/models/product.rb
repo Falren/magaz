@@ -23,7 +23,6 @@ class Product < ApplicationRecord
   before_save :assign_in_stock, if: -> { will_save_change_to_quantity? && !archived? }
   before_save :deplete_quantity, if: %i[will_save_change_to_status? archived?]
 
-  scope :products_for_users, -> { where(status: %i[in_stock out_of_stock]) }
   private
 
   def deplete_quantity
