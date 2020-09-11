@@ -39,6 +39,6 @@ class Product < ApplicationRecord
   end
 
   def assign_in_stock
-    quantity.positive? ? in_stock! : out_of_stock!
+    self.status = quantity.positive? ? :in_stock : :out_of_stock
   end
 end
