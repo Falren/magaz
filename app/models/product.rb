@@ -22,8 +22,13 @@ class Product < ApplicationRecord
   after_touch :update_rating
   before_save :assign_in_stock, if: -> { will_save_change_to_quantity? && !archived? }
   before_save :deplete_quantity, if: %i[will_save_change_to_status? archived?]
+  before_save :update_slug, if: :will_save_change_to_name?
 
   private
+
+  def update_slug
+    self.slug = name
+  end
 
   def deplete_quantity
     self.quantity = 0

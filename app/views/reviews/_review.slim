@@ -1,5 +1,11 @@
 div
-  strong = review.user.email
+  strong => review.user.email
+  ||
+  - if review.updated_at? == review.created_at?
+    |(Edited)
+    =< review.updated_at.strftime("%b %d,%Y")
+  - else
+    =< review.created_at.strftime("%b %d,%Y")
 
 div = review.body
 div

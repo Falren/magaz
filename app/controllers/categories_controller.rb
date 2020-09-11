@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.friendly.find(params[:id])
-    @products = current_user.admin? ? Product.all.order(:status) : Product.all.products_for_users.order(:status)
+    @products = current_user.admin? ? Product.all.order(:status) : Product.not_archived.order(:status)
   end
 
   def new

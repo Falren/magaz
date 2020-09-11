@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   include Authorizable
-  
+
   def create
     @review = Review.new(review_params)
     if @review.save
@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
     end
     redirect_to product_path(@review.product_id)
   end
-
+  
   private
 
   def review_params
