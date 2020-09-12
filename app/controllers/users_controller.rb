@@ -17,6 +17,8 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       sign_in(@user, bypass: true)
       redirect_to edit_user_path(@user), notice: 'Settings have been succesfully updated'
+    else
+      redirect_to edit_user_path(@user), notice: 'Not able to update settings'
     end
   end
 
