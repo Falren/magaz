@@ -1,14 +1,15 @@
 - if flash.notice
-    .notice_div = flash.notice
+    .error_div = flash.notice
 h1 Ultra Magaz
 - unless current_user
   div = link_to 'Sign in', new_user_session_path
   div = link_to 'Sign up', new_user_registration_path
 - else
   div = link_to 'My profile', user_path(current_user.id)
-  div = link_to 'Create new category', new_category_path
   div = @drafted_order ? (link_to 'Shopping cart', edit_order_path(@drafted_order)) : 'Shopping list is blank'
   div = link_to 'Log out', destroy_user_session_path, method: :delete
   h1 = link_to 'Browse', products_path
   h1 Categories
   ul = render @categories
+- if current_user.admin?
+  div = link_to 'Create new category', new_category_path

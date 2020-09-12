@@ -3,6 +3,10 @@ class ReviewPolicy < ApplicationPolicy
     user
   end
 
+  def create?
+    new?
+  end
+
   def edit?
     user.admin? || record.user_id == user
   end

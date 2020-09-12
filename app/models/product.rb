@@ -22,18 +22,23 @@ class Product < ApplicationRecord
   after_touch :update_rating
   before_save :assign_in_stock, if: -> { will_save_change_to_quantity? && !archived? }
   before_save :deplete_quantity, if: %i[will_save_change_to_status? archived?]
+  before_save :update_slug, if: :will_save_change_to_name?
 
   private
+
+  def update_slug
+    self.slug = name
+  end
 
   def deplete_quantity
     self.quantity = 0
   end
 
   def update_rating
-    self.average_rating = reviews.sum(:rating) / reviews.size
+    update(average_rating: reviews.sum(:rating) / reviews.size.to_f)
   end
 
   def assign_in_stock
-    quantity.positive? ? in_stock! : out_of_stock!
+    self.status = quantity.positive? ? :in_stock : :out_of_stock
   end
 end
