@@ -1,4 +1,5 @@
-div = flash.notice
+- if flash.notice
+    .notice_div = flash.notice
 h2
   | Category:
   =< link_to @product.category.name, category_path(@product.category_id)
@@ -18,7 +19,7 @@ div
   =< number_to_currency(@product.price.to_i, precision: 0)
 div
   | Rating:
-  =< number_with_precision(@product.average_rating, precision: 1)
+  =< number_with_precision(@product.average_rating.to_f, precision: 1)
   | /5
 div = current_user.wish_lists.present? ? render('wish_list_items/form') : "You don't have any wish lists yet!"
 

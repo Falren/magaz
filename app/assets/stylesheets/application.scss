@@ -16,8 +16,8 @@
 }
  .notice_div  {
    color: white;
-   border: 3px solid #cc0000;
-   background-color: #cc0000c9;
+   border: 3px solid #00cc00;
+   background-color: #00cc00c9;
    right: 0;
    position: fixed;
    text-align: center;
@@ -27,11 +27,27 @@
    animation-fill-mode: forwards;
 }
 
+.error_div  {
+  color: white;
+  border: 3px solid #cc0000;
+  background-color: #cc0000c9;
+  right: 0;
+  position: fixed;
+  text-align: center;
+  padding: 16px;
+  border-radius: 2px;
+  animation: error_div 5s;
+  animation-fill-mode: forwards;
+}
+
 @keyframes notice_div {
   from { opacity: 1; }
   to   { opacity: 0;}
 }
-
+@keyframes error_div {
+  from { opacity: 1; }
+  to   { opacity: 0;}
+}
 .field_with_errors {
   color: red;
 }

@@ -35,7 +35,7 @@ class Product < ApplicationRecord
   end
 
   def update_rating
-    self.average_rating = reviews.sum(:rating) / reviews.size
+    update(average_rating: reviews.sum(:rating) / reviews.size.to_f)
   end
 
   def assign_in_stock
